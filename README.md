@@ -36,7 +36,7 @@ The source code for my Discord Chat Bot "Tet"
 - Discord.js v13
 
 ***Package***<br>
-To install package type -npm i <pkg-name> in your terminal
+To install package type -npm i `<pkg-name>` in your terminal
 - @discord.js/opus
 - @discord.js/rest
 - discord-api-types
