@@ -47,7 +47,11 @@ To install package type -npm i `<pkg-name>` in your terminal
 - urban
   
 After installing all the necessities<br>
-Put your token in `config.js` and `type node .` to run the bot.<br>
+Put your token in `config.js` file and type `node .` in your terminal to run the bot.<br>
   
+  
+  
+ 
+
 If you have any question feel free to DM me at Discord<br>
 `qwertyuiopasdfghjklzxcvbnm#0666`
