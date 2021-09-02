@@ -9,7 +9,7 @@ const client = new Client({ intents: [
     Intents.FLAGS.GUILD_PRESENCES, 
     Intents.FLAGS.DIRECT_MESSAGES, 
     Intents.FLAGS.GUILD_VOICE_STATES
-] });
+], allowedMentions: { parse: ['users', 'roles'], repliedUser: true} });
 
 const { REST } = require('@discordjs/rest');
 
