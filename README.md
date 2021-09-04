@@ -50,7 +50,7 @@ After installing all the necessities<br>
 Put your token in `config.js` file and type `node .` in your terminal to run the bot.<br>
   
   
-  
+ 
  
 
 If you have any question feel free to DM me at Discord<br>
