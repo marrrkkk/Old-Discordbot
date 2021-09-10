@@ -2,5 +2,7 @@ const client = require('../index')
 
 client.on('ready', () => {
     console.log(`${client.user.tag} is online`)
-    client.user.setActivity(`,help`, {type: "PLAYING"}) 
+    client.user.setStatus('idle')
+    client.user.setPresence({ activities: [ {name: '+help'} ] } )
+    
 })

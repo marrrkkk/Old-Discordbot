@@ -2,6 +2,8 @@ const client = require('../index')
 
 const db = require('quick.db')
 
+const { Permissions } = require('discord.js')
+
 client.on("messageCreate", async (message, guild) => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
@@ -22,6 +24,14 @@ client.on("messageCreate", async (message, guild) => {
         .split(" ");
 
     const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
+
+    const channel = message.channel;
+
+    const botPermissionsIn = message.guild.me.permissionsIn(channel);
+
+    if(!botPermissionsIn.has([
+        Permissions.FLAGS.SEND_MESSAGES
+    ])) return;
 
     if (!command) return;
     await command.run(client, message, args);
