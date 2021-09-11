@@ -8,7 +8,8 @@ const client = new Client({ intents: [
     Intents.FLAGS.GUILD_MEMBERS, 
     Intents.FLAGS.GUILD_PRESENCES, 
     Intents.FLAGS.DIRECT_MESSAGES, 
-    Intents.FLAGS.GUILD_VOICE_STATES
+    Intents.FLAGS.GUILD_VOICE_STATES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS
 ], allowedMentions: { parse: ['users', 'roles'], repliedUser: true} });
 
 const { REST } = require('@discordjs/rest');
@@ -25,9 +26,11 @@ client.snipes = new Collection();
 
 require('./handler')(client);
 
+
+//slash command
 const commands = [{
     name: 'confess',
-    description: 'Sent a confession',
+    description: 'Send a confession',
     options: [
         {
             name: 'text',
@@ -56,14 +59,16 @@ const rest = new REST({ version: '9' }).setToken(token);
 })();
 
 client.on('interactionCreate', async interaction => {
+    if(!interaction.inGuild) return;
     if (!interaction.isCommand()) return;
   
     if (interaction.commandName === 'confess') {
-        let cfsCh = db.get(`setcfs_${interaction.guild.id}`)
-        if(cfsCh === null){
-            return;
-        }
         try {
+          let cfsCh = db.get(`setcfs_${interaction.guild.id}`)
+          if(cfsCh === null){
+              return;
+          }
+          
             const ch = await client.channels.cache.get(cfsCh)
             await interaction.deferReply({ ephemeral: true }).catch((err) => {})
 
