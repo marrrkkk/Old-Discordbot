@@ -20,14 +20,14 @@ The source code for my Discord Chat Bot "Tet"
 - Advanced infomation commands
 - Role/Channel mangement
 
-**Fun***
+**Fun**
 - Snipe command
 - Random image
 - Confessions
 - Actions
 - NSFW
-
- 
-
+<br>
+<br>
+<br>
 If you have any question feel free to DM me at Discord<br>
-`qwertyuiopasdfghjklzxcvbnm#0666`
+[qwertyuiopasdfghjklzxcvbnm#0666](https://discord.com/users/814406096022011934)
