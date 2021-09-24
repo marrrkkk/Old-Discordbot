@@ -1,5 +1,10 @@
 # Tet
-The source code for my Discord Chat Bot "Tet"
+The source code for my Discord Chat Bot "Tet"<br>
+<br>
+**Developed by:** [qwertyuiopasdfghjklzxcvbnm#0666](https://discord.com/users/814406096022011934)<br>
+**Support Server:** https://discord.gg/tgKDvS3XRA<br>
+**Invite:** [Click here](https://discord.com/oauth2/authorize?client_id=879042410691301386&scope=applications.commands+bot&permissions=3161844862)<br>
+**Vote:** [Click here](https://top.gg/bot/879042410691301386)
 
 **What this bot can do?**
 
@@ -26,8 +31,5 @@ The source code for my Discord Chat Bot "Tet"
 - Confessions
 - Actions
 - NSFW
-<br>
-<br>
-<br>
-If you have any question feel free to DM me at Discord
-`qwertyuiopasdfghjklzxcvbnm#0666`
+
+If you have any suggestions or questions feel free to DM me at [Discord](https://discord.com/users/814406096022011934)<br>
