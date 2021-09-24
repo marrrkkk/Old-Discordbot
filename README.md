@@ -22,35 +22,11 @@ The source code for my Discord Chat Bot "Tet"
 
 **Fun***
 - Snipe command
-- Talk with the bot
 - Random image
-- Search words
 - Confessions
-- Economy(Soon)
+- Actions
+- NSFW
 
-
-# How to use
-
-***Requirements***
-- Node.js v16 or up
-- Discord.js v13
-
-***Package***<br>
-To install package type -npm i `<pkg-name>` in your terminal
-- @discord.js/opus
-- @discord.js/rest
-- discord-api-types
-- glob
-- ms
-- moment
-- quick.db
-- urban
-  
-After installing all the necessities<br>
-Put your token in `config.js` file and type `node .` in your terminal to run the bot.<br>
-  
-  
- 
  
 
 If you have any question feel free to DM me at Discord<br>
