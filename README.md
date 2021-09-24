@@ -29,5 +29,5 @@ The source code for my Discord Chat Bot "Tet"
 <br>
 <br>
 <br>
-If you have any question feel free to DM me at Discord<br>
-[qwertyuiopasdfghjklzxcvbnm#0666](https://discord.com/users/814406096022011934)
+If you have any question feel free to DM me at Discord
+`qwertyuiopasdfghjklzxcvbnm#0666`
