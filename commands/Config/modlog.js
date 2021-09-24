@@ -22,7 +22,7 @@ module.exports = {
             .setDescription('Successfully disable Mod Logging')
             .setColor('RED')
             await db.delete(`setmodlogs_${message.guild.id}`)
-            return message.channel.send({ embeds: [embed] })
+            return message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
         }
 
         
@@ -31,6 +31,6 @@ module.exports = {
         .setDescription(`<:blurplecertifiedmoderator:879212267470749746> Mod Logging has been set to ${channel}`)
         .setColor('GREEN')
 
-        await message.channel.send({ embeds: [embed] })
+        await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
     }
 }
