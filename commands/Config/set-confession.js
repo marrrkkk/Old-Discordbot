@@ -30,6 +30,6 @@ module.exports = {
         .setDescription(`<:mail:879049788514005013>  Confession has been set to ${channel}`)
         .setColor('LUMINOUS_VIVID_PINK')
 
-        await message.channel.send({ embeds: [embed] })
+        await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))
     }
 }
