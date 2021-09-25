@@ -15,7 +15,7 @@ client.on('roleCreate', async role => {
         .setColor("BLUE")
         .setFooter(`Role ID: ${role.id}`)
     
-        await client.channels.cache.get(rc).send({ embeds: [embed] })
+        await client.channels.cache.get(channel).send({ embeds: [embed] })
     } catch (error) {
         console.log(error)
     }
