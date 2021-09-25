@@ -14,6 +14,18 @@ client.on("messageCreate", async (message, guild) => {
         prefix = prefixes
     }
 
+    if(db.has(`afk-${message.author.id}+${message.guild.id}`)){
+        const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
+        await db.delete(`afk-${message.author.id}+${message.guild.id}`)
+        message.reply(`I removed your afk (${info})`).catch(e => console.log(e))
+    }
+    if(message.mentions.members.first()){
+        if(db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)){
+            message.channel.send(message.mentions.members.first().displayName + " is AFK - " + db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`))
+            .catch(er => console.log(er))
+        }
+    }
+
     if(message.content.startsWith(prefix)) {
         const [cmd, ...args] = message.content
         .slice(prefix.length)
@@ -32,17 +44,5 @@ client.on("messageCreate", async (message, guild) => {
 
     if (!command) return;
     await command.run(client, message, args);
-    }
-
-    if(db.has(`afk-${message.author.id}+${message.guild.id}`)){
-        const info = db.get(`afk-${message.author.id}+${message.guild.id}`)
-        await db.delete(`afk-${message.author.id}+${message.guild.id}`)
-        message.reply(`I removed your afk (${info})`).catch(e => console.log(e))
-    }
-    if(message.mentions.members.first()){
-        if(db.has(`afk-${message.mentions.members.first().id}+${message.guild.id}`)){
-            message.channel.send(message.mentions.members.first().displayName + " is AFK - " + db.get(`afk-${message.mentions.members.first().id}+${message.guild.id}`))
-            .catch(er => console.log(er))
-        } else return
     }
 })
