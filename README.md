@@ -6,7 +6,7 @@ The source code for my Discord Chat Bot "Tet"<br>
 **Invite:** [Click here](https://discord.com/oauth2/authorize?client_id=879042410691301386&scope=applications.commands+bot&permissions=3161844862)<br>
 **Vote:** [Click here](https://top.gg/bot/879042410691301386)
 
-**What this bot can do?**
+## Features
 
 ***Logging***
 - Deleted, edited messages(including images)
