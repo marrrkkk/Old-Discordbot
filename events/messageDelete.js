@@ -8,12 +8,12 @@ client.on('messageDelete', async message => {
         const row = new MessageActionRow()
         .addComponents(
             new MessageButton()
-            .setCustomId('link')
-            .setEmoji('<:context:886094352961650748>')
             .setLabel('Context')
-            .setStyle('SECONDARY')
+            .setStyle('LINK')
+            .setURL(message.url)
         )
-        if(message.author.bot) return;
+        if(message.author.bot) return
+        if(message.channel.type === 'DM') return
         let channel = db.get(`setmeslogs_${message.guild.id}`)
         if(channel === null){
             return;
@@ -30,12 +30,7 @@ client.on('messageDelete', async message => {
         .setTimestamp()
         .setColor("RED")
     
-        let msg = await client.channels.cache.get(channel).send({ embeds: [embed], components: [row] })
-        const collector = msg.createMessageComponentCollector({ componentType: 'BUTTON'});
-
-        collector.on('collect', async b => {
-            await b.reply({ content: `${message.url}`, ephemeral: true})
-        })
+        await client.channels.cache.get(channel).send({ embeds: [embed], components: [row] })
     } catch (error) {
         console.log(error)
     }
@@ -44,8 +39,9 @@ client.on('messageDelete', async message => {
 //anti-ghostping
 client.on('messageDelete', async message => {
     try {
+        if(message.author.bot) return
+        if(message.channel.type === 'DM') return
         if(db.has(`anti-ghostping-${message.guild.id}`)=== false) return;
-        if(message.author.bot) return;
         if(message.mentions.users.first() || message.mentions.roles.first() || message.content.toLowerCase().includes("@everyone", "@here")){
             const embed = new MessageEmbed()
             .setTitle(`Ghost Ping Detected!`)
@@ -64,15 +60,20 @@ client.on('messageDelete', async message => {
 
 //snipe
 client.on('messageDelete', async message => {
-    if(message.author.bot) return
-    let snipes = client.snipes.get(message.channel.id) || [];
-    if(snipes.length > 9) snipes = snipes.slice(0, 8)
-
-    snipes.unshift({
-        msg: message,
-        image: message.attachments.first()?.proxyURL || null,
-        time: Date.now(),
-    });
-
-    client.snipes.set(message.channel.id, snipes);
+    try {
+        if(message.author.bot) return
+        if(message.channel.type === 'DM') return
+        let snipes = client.snipes.get(message.channel.id) || [];
+        if(snipes.length > 9) snipes = snipes.slice(0, 8)
+    
+        snipes.unshift({
+            msg: message,
+            image: message.attachments.first()?.proxyURL || null,
+            time: Date.now(),
+        });
+    
+        await client.snipes.set(message.channel.id, snipes);
+    } catch (error) {
+        console.log(error)
+    }
 })

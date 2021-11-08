@@ -14,22 +14,33 @@ module.exports = {
         .addComponents(
             new MessageButton()
             .setCustomId('left')
-            .setEmoji('<:leave:879767669157548162>')
-            .setStyle('SECONDARY')
+            .setEmoji('<:left:899988427137773568>')
+            .setStyle('PRIMARY')
         )
         .addComponents(
             new MessageButton()
             .setCustomId('right')
-            .setEmoji('<:join:873923620890632262>')
-            .setStyle('SECONDARY')
+            .setEmoji('<:right:899988427146166363>')
+            .setStyle('PRIMARY')
         )
 
-        const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]) || message.guild.roles.cache.find(r => r.name.toLowerCase() === args.join(' '))
-        if(!role){
-            return message.channel.send("<:cross:873923620517347389> Please provide a valid role")
-        }
+        const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]) || 
+        message.guild.roles.cache.find(r => r.name === args.join(' ')) || message.guild.roles.cache.find(r => r.name.toLowerCase() === args.join(' '))
+        if(!args[0]) return message.channel.send("<:cross:873923620517347389> Please provide a role")
+        if(!role) return message.channel.send(`Couldn't find role "${args.join(' ')}"`)
+        
         let a = []
-        role.members.forEach((x) => a.push(x.user.username))
+        role.members.forEach((x) => a.push(`${x.user.tag} (\`${x.user.id}\`)`))
+
+        if(a.length === 0){
+            const embed = new MessageEmbed()
+            .setTitle(`Members in role ${role.name} - ${role.members.size}`)
+            .setDescription(`No Users in this role`)
+            .setColor(role.color)
+            .setFooter('Page - 1/1')
+
+            return message.channel.send({ embeds: [embed] })
+        }
 
         let i0 = 0
         let i1 = 10
@@ -47,9 +58,9 @@ module.exports = {
         const collector = msg.createMessageComponentCollector({ componentType: 'BUTTON'})
 
         collector.on('collect', async b => {
-            b.deferUpdate()
-            if(b.user.id !== message.author.id) return b.reply({ content: 'This button is not for you', ephemeral: true})
+            if(b.user.id !== message.author.id) return await b.reply({ content: 'This button is not for you', ephemeral: true})
             if(b.customId === 'left'){
+                b.deferUpdate()
                 if(page <= 1) return
                 if(page > Math.ceil(role.members.size / 10)) return
 
@@ -69,6 +80,7 @@ module.exports = {
             }
 
             if(b.customId === 'right'){
+                b.deferUpdate()
                 if(page >= Math.ceil(role.members.size / 10)) return
 
                 i0 = i0 + 10

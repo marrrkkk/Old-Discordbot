@@ -32,7 +32,7 @@ module.exports = {
         const snipeEmbed = new MessageEmbed()
         .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
         .setImage(image)
-        .setDescription(msg.content)
+        .setDescription(msg.content || `[no text]`)
         .setFooter(`${moment(time).fromNow()} | [${snipe + 1} / ${snipes.length}]`)
         .setColor("RANDOM")
 

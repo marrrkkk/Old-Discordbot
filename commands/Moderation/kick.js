@@ -17,17 +17,17 @@ module.exports = {
         .setFooter("Require KICK MEMBERS permission")
         .setColor("RED")
         if(!message.guild.me.permissions.has("KICK_MEMBERS")) return message.reply("<:cross:873923620517347389>  Missing Permission: `KICK_MEMBERS`")
-        if(!message.member.permissions.has("KICK_MEMBERS")) return message.channel.send({ embeds: [errr] }).catch(e => console.log(e))
+        if(!message.member.permissions.has("KICK_MEMBERS")) return
 
         let reason = args.slice(1).join(" ")
         const mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
         if(!reason) reason = "No reason given"
-        if(!args[0]) return message.reply({ content: "Please specify someone to kick", allowedMentions: {repliedUsers: false}})
-        if(!mentionedMember) return message.reply({ content: "Couldn't find that member", allowedMentions: {repliedUsers: false}})
-        if(mentionedMember.id === message.author.id) return message.reply({ content: "You can't kick yourself", allowedMentions:{repliedUsers:false}})
-        if(!mentionedMember.kickable) return message.reply({ content: "Unable to kick member", allowedMentions: {repliedUsers: false}})
-        if(message.member.roles.highest.position <= mentionedMember.roles.highest.position) return message.reply({ content: "Unable to kick someone higher or the same role as you", allowedMentions:{repliedUsers:false}})
+        if(!args[0]) return message.reply({ content: 'Please specify someone to kick', allowedMentions: {repliedUser:false} })
+        if(!mentionedMember) return message.channel.send(`Couldn't find member "${args[0]}""`)
+        if(mentionedMember.id === message.author.id) return message.channel.send("You can't kick yourself")
+        if(!mentionedMember.kickable) return message.channel.send('<:cross:873923620517347389> Unable to kick that member')
+        if(message.member.roles.highest.position <= mentionedMember.roles.highest.position) return message.channel.send('Unable to kick someone higher or the same role as you')
 
         const kickEmbed = new MessageEmbed()
         .setDescription(`<:blurplecertifiedmoderator:879212267470749746> ・ Kicked **${mentionedMember.user.tag}**`)

@@ -18,14 +18,14 @@ module.exports = {
         .addComponents(
             new MessageButton()
             .setCustomId('left')
-            .setEmoji('<:leave:879767669157548162>')
-            .setStyle('SECONDARY')
+            .setEmoji('<:left:899988427137773568>')
+            .setStyle('PRIMARY')
         )
         .addComponents(
             new MessageButton()
             .setCustomId('right')
-            .setEmoji('<:join:873923620890632262>')
-            .setStyle('SECONDARY')
+            .setEmoji('<:right:899988427146166363>')
+            .setStyle('PRIMARY')
         )
 
         let i0 = 0

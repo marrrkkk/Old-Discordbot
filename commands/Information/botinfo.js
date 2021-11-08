@@ -18,12 +18,13 @@ module.exports = {
 
         const embed = new MessageEmbed()
         .setTitle("<:Bot:873923621247127612> About Me")
-        .addField('Name', "Tet#2652")
-        .addField(`Created `, `23-08-2021`)
+        .addField('Name', "Tet#2652", true)
+        .addField(`Created `, `August 23, 2021`, true)
         .addField('Developer', `[qwertyuioasdfghjklzxcvbnm#1312](https://discord.com/users/814406096022011934)`)
-        .addField("Total Server", `${client.guilds.cache.size} servers`)
+        .addField("Stats", `> ${client.guilds.cache.size} Servers\n> ${client.users.cache.size} Users`)
+        .addField('Package Info', '```fix\nOS - Windows 10\nNode.js - v16.6.0\nDiscord.js - v13.1.0\nQuick.db - v7.1.3\n```')
         .addField('Uptime', `\`\`\`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds\`\`\``)
-        .setColor('BLURPLE')
+        .setColor('#2f3136')
         .setTimestamp()
 
         await message.channel.send({ embeds: [embed] }).catch(e => console.log(e))

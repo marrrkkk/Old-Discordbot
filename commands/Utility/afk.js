@@ -15,7 +15,8 @@ module.exports = {
 
         if(reason.length > 1500) return message.reply("Your reason is too long!")
 
-        await db.set(`afk-${message.author.id}+${message.guild.id}`, reason)
+        await db.set(`afk-${message.author.id}+${message.guild.id}`, `${reason}`)
+        await db.set(`time-${message.author.id}+${message.guild.id}`, Date.now())
 
         const afkEmbed = new MessageEmbed()
         .setTitle('<:idle:880155848041701387> AFK')

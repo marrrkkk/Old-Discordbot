@@ -4,15 +4,16 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js')
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     try {
+        if(oldMessage.content === newMessage.content) return
+        if(oldMessage.author.bot) return
+        if(oldMessage.channel.type === 'DM') return
         const row = new MessageActionRow()
         .addComponents(
             new MessageButton()
-            .setCustomId('link')
-            .setEmoji('<:context:886094352961650748>')
             .setLabel('Context')
-            .setStyle('SECONDARY')
+            .setStyle('LINK')
+            .setURL(newMessage.url)
         )
-        if(oldMessage.author.bot) return;
         let channel = db.get(`setmeslogs_${oldMessage.guild.id}`)
         if(channel === null){
             return;
@@ -28,12 +29,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
         .setTimestamp()
         .setColor("YELLOW")
     
-        let msg = await client.channels.cache.get(channel).send({ embeds: [embed], components: [row] })
-        const collector = msg.createMessageComponentCollector({ componentType: 'BUTTON'});
-
-        collector.on('collect', async b => {
-            await b.reply({ content: `${oldMessage.url}`, ephemeral: true})
-        }) 
+        await client.channels.cache.get(channel).send({ embeds: [embed], components: [row] }) 
     } catch (error) {
         console.log(error)
     }
@@ -41,8 +37,10 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     try {
+        if(oldMessage.content === newMessage.content) return
+        if(oldMessage.author.bot) return
+        if(oldMessage.channel.type === 'DM') return
         if(db.has(`anti-ghostping-${oldMessage.guild.id}`)=== false) return;
-        if(oldMessage.author.bot) return;
         if(oldMessage.mentions.users.first() || oldMessage.mentions.roles.first() || oldMessage.content.toLowerCase().includes("@everyone", "@here")){
             const embed = new MessageEmbed()
             .setTitle("Ghost Ping Detected!")

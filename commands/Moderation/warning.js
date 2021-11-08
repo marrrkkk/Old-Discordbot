@@ -12,9 +12,7 @@ module.exports = {
 
     run: async(client, message, args) => {
         if(!message.member.permissions.has("MANAGE_ROLES")) return;
-        const user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-
-        if(!user) return message.reply({ content: "Please specify a member", allowedMentiions:{repliedUsers:false}})
+        const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member
 
         let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
 

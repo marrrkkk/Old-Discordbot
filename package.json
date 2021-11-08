@@ -1,16 +1,18 @@
 {
   "dependencies": {
     "axios": "^0.21.4",
-    "discord.js": "^13.1.0",
+    "canvacord": "^5.2.3",
+    "discord-logs": "^2.0.1",
+    "discord.js": "^13.2.0-dev.1633435371.8bc1ece",
     "glob": "^7.2.0",
     "moment": "^2.29.1",
     "ms": "^3.0.0-canary.1",
-    "quick.db": "^7.1.3"
+    "quick.db": "^7.1.3",
+    "twemoji-parser": "^13.1.0"
   },
   "name": "tet",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

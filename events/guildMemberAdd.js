@@ -5,6 +5,7 @@ const { MessageEmbed } = require('discord.js')
 
 client.on('guildMemberAdd', async member => {
     try {
+        if(member.user.bot) return
         let channel = db.get(`setlogs_${member.guild.id}`);
         if(channel === null){
             return

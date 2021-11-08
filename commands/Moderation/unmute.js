@@ -18,7 +18,12 @@ module.exports = {
 
         if(!Member) return message.reply({ content: "Please specify someone", allowedMentions:{repliedUsers:false}})
 
-        const role = message.guild.roles.cache.find(role => role.name.toLowerCase() === "muted")
+        const role = db.get(`muterole_${message.guild.id}`)
+        if(role === null){
+            return message.channel.send('<:cross:873923620517347389> Muterole is not setup')
+        }
+
+        if(!Member.roles.cache.get(role)) return message.channel.send(`${Member.displayName} is not muted`)
 
         await Member.roles.remove(role).catch(error => console.log(error))
 

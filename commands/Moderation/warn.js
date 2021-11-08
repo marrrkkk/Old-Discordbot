@@ -23,7 +23,8 @@ module.exports = {
 
         if(!reason) reason = "No reason given";
 
-        if(!user) return message.reply({ content: "Please specify a member", allowedMentions:{repliedUsers:false}})
+        if(!args[0]) return message.reply({ content: "Please specify a member", allowedMentions:{repliedUsers:false}})
+        if(!user) return message.channel.send(`Couldn't find member "${args[0]}"`)
 
         let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
 
@@ -50,7 +51,7 @@ module.exports = {
         }
         let warnlog = db.get(`setmodlogs_${message.guild.id}`)
         if(warnlog === null){
-            null
+            return
         }
 
         const embed = new MessageEmbed()

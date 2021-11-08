@@ -16,7 +16,7 @@ module.exports = {
         const { memberCount } = guild
 
         try {
-            if(!guild) return
+            if(!guild) return message.channel('Not a valid guild ID')
 
             const embed = new MessageEmbed()
             .setTitle(guild.name)

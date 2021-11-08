@@ -14,7 +14,7 @@ module.exports = {
         if(!message.member.permissions.has("MANAGE_ROLES")) return;
 
         const user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-        if(!user) return message.reply({ content: "Please specify a member", allowedMentions:{repliedUsers:false}})
+        if(!user) return message.channel.send('Please specify a member')
 
         let warnings = db.get(`warnings_${message.guild.id}_${user.id}`)
 

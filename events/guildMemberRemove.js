@@ -13,9 +13,10 @@ client.on('guildMemberRemove', async member => {
         .setAuthor(member.user.tag, member.user.displayAvatarURL())
         .setTitle(`<:leave:879767669157548162> Member Left`)
         .setDescription(`<@${member.id}> left the server`)
-        .addField("User ID: ", `${member.id}`)
-        .setFooter(`Account created: ${moment(member.user.createdAt).format("DD-MM-YYYY")}`)
+        .addField(`Joined Server`, `${moment(member.joinedAt).format("LL")} ||${moment(member.joinedAt).fromNow()}||`)
+        .addField(`Account created`, `${moment(member.user.createdAt).format("LL")}`)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+        .setFooter(`User ID: ${member.id}`)
         .setColor("RED")
     
         await client.channels.cache.get(channel).send({ embeds: [embed] })

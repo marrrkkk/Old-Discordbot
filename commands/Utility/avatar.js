@@ -11,7 +11,11 @@ module.exports = {
      */
 
     run: async(client, message, args) => {
-        const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
+        let Member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) ||
+        message.guild.members.cache.find(m => m.user.username === args.join(' ')) || message.guild.members.cache.find(m => m.user.username.toLowerCase() === args.join(' ')) ||
+        message.guild.members.cache.find(m => m.displayName === args.join(' ')) || message.guild.members.cache.find(m => m.displayName.toLowerCase() === args.join(' '))
+        if(!args[0]) Member = message.member
+        if(!Member) return message.channel.send(`Could't find member "${args.join(' ')}"`)
 
         const embed = new MessageEmbed()
         .setAuthor(Member.user.tag, Member.user.displayAvatarURL())
